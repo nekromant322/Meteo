@@ -10,4 +10,9 @@ public class MainController {
     public String showLoginPage(){
         return "loginPage";
     }
+
+    @GetMapping("weather")
+    public String getDefaultWeather(){
+        return "defaultWeather";
+    }
 }
