@@ -8,7 +8,12 @@ public class MainController {
 
     @GetMapping("loginPage")
     public String showLoginPage(){
-        return "loginPage";
+        return "login";
+    }
+
+    @GetMapping("registration")
+    public String showRegistrationPage(){
+        return "registration";
     }
 
     @GetMapping("weather")

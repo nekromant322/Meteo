@@ -9,7 +9,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource({
         "classpath:config/datasource.properties",
         "classpath:config/jpa.properties",
-        "classpath:config/weather.properties"
+        "classpath:config/weather.properties",
+        "classpath:config/SMSC.properties"
 })
 public class MeteoApplication {
 

@@ -3,6 +3,7 @@ package com.example.meteo;
 import com.example.meteo.model.Authority;
 import com.example.meteo.model.User;
 import com.example.meteo.service.AuthorityService;
+import com.example.meteo.service.SMSCService;
 import com.example.meteo.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,14 @@ public class InitData {
     AuthorityService authorityService;
 
     @Autowired
+    SMSCService smscSender;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void initData() {
 
+//        smscSender.send_sms("89775548911","TEST MESSAGE",1, "", "", 0, "", "");
         initUserAndRoles();
 
 
