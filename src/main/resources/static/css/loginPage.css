@@ -260,3 +260,9 @@ input[type=text]:placeholder {
 #icon {
     width:60%;
 }
+
+
+/* my */
+#error-message {
+    color : crimson;
+}

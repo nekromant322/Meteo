@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SuccessRedirectHandler successRedirectHandler;
 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("root").password(getEncoder().encode("root")).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("root@mail.ru").password(getEncoder().encode("root")).roles("ADMIN");
         auth.userDetailsService(userService).passwordEncoder(getEncoder());
     }
 
@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 //                .antMatchers("/**").authenticated()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/css/*","/js/*").permitAll()
+                .antMatchers("/authenticate").permitAll()
+                .antMatchers("/map/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/loginPage")
