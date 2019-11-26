@@ -44,14 +44,20 @@ public class InitData {
     }
 
     private void initWeatherSituation() {
-        for(int i = 0; i < 10; i++) {
-            WeatherResponse weatherResponse = weatherResponseService.get(i,i);
-            WeatherSituation weatherSituation = new WeatherSituation(weatherResponse);
-            weatherSituationService.insert(weatherSituation);
+        try {
+
+            for (int i = 0; i < 10; i++) {
+                WeatherResponse weatherResponse = weatherResponseService.get(i, i);
+                WeatherSituation weatherSituation = new WeatherSituation(weatherResponse);
+                weatherSituationService.insert(weatherSituation);
+
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
     }
 
-    private void initUserAndRoles(){
+    private void initUserAndRoles() {
         Authority adminAuthority = new Authority("ROLE_ADMIN");
         Authority userAuthority = new Authority("ROLE_USER");
         authorityService.insert(adminAuthority);
@@ -59,7 +65,7 @@ public class InitData {
 
         List<Authority> authorities = new ArrayList<>();
         authorities.add(adminAuthority);
-        userService.insert(new User("1@mail.ru",bCryptPasswordEncoder.encode("1"), authorities));
+        userService.insert(new User("1@mail.ru", bCryptPasswordEncoder.encode("1"), authorities));
 
 
     }

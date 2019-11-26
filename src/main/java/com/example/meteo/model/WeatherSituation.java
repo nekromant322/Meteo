@@ -5,6 +5,7 @@ package com.example.meteo.model;
 import com.example.meteo.model.weather.WeatherResponse;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class WeatherSituation {
@@ -34,6 +35,9 @@ public class WeatherSituation {
     @Column
     private Integer clouds;
 
+    @Column
+    private LocalDateTime measureDate;
+
     public WeatherSituation() {
     }
 
@@ -45,6 +49,7 @@ public class WeatherSituation {
         this.humidity = weatherResponse.getMain().getHumidity();
         this.windSpeed = weatherResponse.getWind().getSpeed();
         this.clouds = weatherResponse.getClouds().getAll();
+        this.measureDate = LocalDateTime.now();
     }
 
     public Long getId() {
