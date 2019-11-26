@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.transaction.Transactional;
 
 @Service
-public class WeatherService {
+public class WeatherResponseService {
 
     @Autowired
     private ObjectMapper jacksonObjectMapper;
@@ -30,7 +30,7 @@ public class WeatherService {
         System.err.println(response.getBody());
     }
 
-    public void getTestWeatherPOJO() {
+    public WeatherResponse getTestWeatherPOJO() {
 
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl
@@ -38,7 +38,7 @@ public class WeatherService {
         WeatherResponse weatherResponse
                 = restTemplate.getForObject(fooResourceUrl, WeatherResponse.class);
 
-        System.out.println(weatherResponse);
+        return weatherResponse;
     }
 
 }

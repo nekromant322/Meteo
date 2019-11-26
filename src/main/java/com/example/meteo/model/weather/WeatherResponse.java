@@ -128,7 +128,7 @@ public class WeatherResponse implements Serializable
 
     @Override
     public String toString() {
-        return "WeatherResponse{" +
+        return "WeatherSituationDAO{" +
                 "coord=" + coord +
                 ", weather=" + weather +
                 ", base='" + base + '\'' +
