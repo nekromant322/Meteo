@@ -45,7 +45,7 @@ public class SMSCService {
 
 
     public String[] send_sms(String phones, String message) {
-        return send_sms(phones,message,1, "", "", 0, "", "");
+        return send_sms(phones, message, 1, "", "", 0, "", "");
     }
 
     /**

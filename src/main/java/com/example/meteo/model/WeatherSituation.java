@@ -36,6 +36,7 @@ public class WeatherSituation {
 
     public WeatherSituation() {
     }
+
     public WeatherSituation(WeatherResponse weatherResponse) {
         this.lon = weatherResponse.getCoord().getLon();
         this.lat = weatherResponse.getCoord().getLat();
