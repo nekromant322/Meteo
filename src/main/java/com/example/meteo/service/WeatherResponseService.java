@@ -13,30 +13,24 @@ import javax.transaction.Transactional;
 @Service
 public class WeatherResponseService {
 
-    @Autowired
-    private ObjectMapper jacksonObjectMapper;
 
     @Value("${open.weather.api.key}")
     String WEATHER_API_KEY;
 
+    @Value("${open.weather.api.url}")
+    String WEATHER_API_URL;
 
-    public void getTestWeather() {
+    public WeatherResponse get(double lat, double lon) {
 
+        if (Math.abs(lat) > 180 || Math.abs(lon) > 180) {
+            throw new IllegalArgumentException("Coordinates should be between -180 and 180 degree");
+        }
         RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl
-                = "http://api.openweathermap.org/data/2.5/weather?lat=59&lon=65&id=524901&APPID=" + WEATHER_API_KEY;
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(fooResourceUrl, String.class);
-        System.err.println(response.getBody());
-    }
-
-    public WeatherResponse getTestWeatherPOJO() {
-
-        RestTemplate restTemplate = new RestTemplate();
-        String fooResourceUrl
-                = "http://api.openweathermap.org/data/2.5/weather?lat=59&lon=65&id=524901&APPID=" + WEATHER_API_KEY;
+        String weatherResourceUrl
+                = WEATHER_API_URL + "?lat=" + lat + "&lon=" + lon +"&APPID=" + WEATHER_API_KEY;
+        //dont know what is for : &id=524901&
         WeatherResponse weatherResponse
-                = restTemplate.getForObject(fooResourceUrl, WeatherResponse.class);
+                = restTemplate.getForObject(weatherResourceUrl, WeatherResponse.class);
 
         return weatherResponse;
     }

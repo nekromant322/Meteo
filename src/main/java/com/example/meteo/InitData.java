@@ -2,9 +2,10 @@ package com.example.meteo;
 
 import com.example.meteo.model.Authority;
 import com.example.meteo.model.User;
-import com.example.meteo.service.AuthorityService;
-import com.example.meteo.service.SMSCService;
-import com.example.meteo.service.UserService;
+import com.example.meteo.model.WeatherSituation;
+import com.example.meteo.model.weather.Weather;
+import com.example.meteo.model.weather.WeatherResponse;
+import com.example.meteo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,14 +27,28 @@ public class InitData {
     SMSCService smscSender;
 
     @Autowired
+    WeatherResponseService weatherResponseService;
+
+    @Autowired
+    WeatherSituationService weatherSituationService;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void initData() {
 
 //        smscSender.send_sms("89775548911","TEST MESSAGE",1, "", "", 0, "", "");
         initUserAndRoles();
+        initWeatherSituation();
 
+    }
 
+    private void initWeatherSituation() {
+        for(int i = 0; i < 10; i++) {
+            WeatherResponse weatherResponse = weatherResponseService.get(i,i);
+            WeatherSituation weatherSituation = new WeatherSituation(weatherResponse);
+            weatherSituationService.insert(weatherSituation);
+        }
     }
 
     private void initUserAndRoles(){
@@ -48,4 +63,5 @@ public class InitData {
 
 
     }
+
 }

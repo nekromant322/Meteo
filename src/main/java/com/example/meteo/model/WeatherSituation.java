@@ -38,7 +38,7 @@ public class WeatherSituation {
     }
     public WeatherSituation(WeatherResponse weatherResponse) {
         this.lon = weatherResponse.getCoord().getLon();
-        this.lon = weatherResponse.getCoord().getLat();
+        this.lat = weatherResponse.getCoord().getLat();
         this.temp = weatherResponse.getMain().getTemp();
         this.pressure = weatherResponse.getMain().getPressure();
         this.humidity = weatherResponse.getMain().getHumidity();
