@@ -16,6 +16,7 @@ public class RegistrationCodeService {
     public void insert(RegistrationCode registrationCode) {
         registrationCodeDAO.save(registrationCode);
     }
+
     public boolean checkRegistrationCode(RegistrationCode registrationCode) {
         List<RegistrationCode> registrationCodeList = registrationCodeDAO.findAll();
         if(registrationCodeList.contains(registrationCode)) {
@@ -23,6 +24,7 @@ public class RegistrationCodeService {
         }
         return false;
     }
+
     public void removeRegistrationCode(RegistrationCode registrationCode) {
         registrationCodeDAO.delete(registrationCode);
     }

@@ -22,17 +22,16 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         User user = userDAO.findByEmail(email);
-//        System.err.println(user);
         if (user == null) {
             throw new UsernameNotFoundException("User with name " + email + " not found");
         }
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return user;
     }
 
     public void insert(User user) {
         userDAO.save(user);
     }
+
     public User findByEmail(String email) {
         return userDAO.findByEmail(email);
     }
