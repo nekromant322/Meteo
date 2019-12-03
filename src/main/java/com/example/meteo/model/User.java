@@ -16,6 +16,7 @@ public class User implements UserDetails {
 
     @Column(name = "email", unique = true)
     private String email;
+
     @Column(name = "password")
     private String password;
 
