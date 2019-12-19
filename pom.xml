@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>testdb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>testdb</name>
-    <description>Demo project for Spring Boot</description>
+    <name>Meteo App</name>
+    <description>Meteo application</description>
 
     <properties>
         <java.version>1.8</java.version>
