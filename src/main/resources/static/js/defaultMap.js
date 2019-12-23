@@ -1,14 +1,54 @@
 function test() {
     alert(123);
 }
+function getAndRender() {
+    var lat = $("#lat").val();
+    var lon = $("#lon").val();
+    var weatherSituation = ajaxWeatherAtPoint(lat,lon);
+
+    var newCircle = new ymaps.Circle([
+            [lat, lon],
+            // Радиус круга в метрах.
+            10000
+        ], {
+            balloonContent: "Радиус круга - 10 км",
+            hintContent: "Подвинь меня"
+        }, {
+            draggable: false,
+            // Последний байт (77) определяет прозрачность.
+            fillColor: "#0000ff77",
+            // Цвет обводки.
+            strokeColor: "#990066",
+            // Прозрачность обводки.
+            strokeOpacity: 0.8,
+            // Ширина обводки в пикселях.
+            strokeWidth: 2
+        });
+        myMap.geoObjects.add(newCircle);
+}
+
+function ajaxWeatherAtPoint(lat, lon) {
 
 
+    var coord = 'lat='+lat+'&lon='+ lon;
+    $.ajax({
+        method: 'GET',
+        url: '/api/weather?' + coord,
+        success: function(weatherSituation) {
+            console.log(weatherSituation);
+            return weatherSituation;
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
 
 ymaps.ready(init);
-
+var myMap;
 function init() {
     // Создаем карту.
-    var myMap = new ymaps.Map("map", {
+    myMap = new ymaps.Map("map", {
         center: [55.76, 37.64],
         zoom: 10
     }, {
@@ -100,3 +140,6 @@ function init() {
     myMap.geoObjects.add(myCircle1);
     myMap.geoObjects.add(myCircle2);
 }
+
+
+
