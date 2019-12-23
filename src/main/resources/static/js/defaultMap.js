@@ -44,7 +44,31 @@ function ajaxWeatherAtPoint(lat, lon) {
     });
 }
 
+function newPolygon() {
+    let centerLat = myMap.getCenter()[0];
+    let centerLon = myMap.getCenter()[1];
+    let zoom = 0.1;
+    myMap.geoObjects.removeAll();
+    myMap.setZoom(10);
+
+
+    polygon = new ymaps.Polygon([
+            [
+                [centerLat - zoom, centerLon - zoom],
+                [centerLat + zoom, centerLon + zoom]
+
+
+            ]
+        ]);
+    myMap.geoObjects.add(polygon);
+
+    // Включаем режим масштабирования.
+    polygon.editor.startFraming();
+}
+
+
 ymaps.ready(init);
+var polygon;
 var myMap;
 function init() {
     // Создаем карту.
