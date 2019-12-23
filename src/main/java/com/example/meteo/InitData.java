@@ -3,7 +3,6 @@ package com.example.meteo;
 import com.example.meteo.model.Authority;
 import com.example.meteo.model.User;
 import com.example.meteo.model.WeatherSituation;
-import com.example.meteo.model.weather.Weather;
 import com.example.meteo.model.weather.WeatherResponse;
 import com.example.meteo.service.*;
 
@@ -47,7 +46,7 @@ public class InitData {
         try {
 
             for (int i = 0; i < 10; i++) {
-                WeatherResponse weatherResponse = weatherResponseService.get(i, i);
+                WeatherResponse weatherResponse = weatherResponseService.getWeatherResponse(i, i);
                 WeatherSituation weatherSituation = new WeatherSituation(weatherResponse);
                 weatherSituationService.insert(weatherSituation);
 

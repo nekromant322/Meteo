@@ -1,14 +1,10 @@
 package com.example.meteo.service;
 
+import com.example.meteo.model.WeatherSituation;
 import com.example.meteo.model.weather.WeatherResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import javax.transaction.Transactional;
 
 @Service
 public class WeatherResponseService {
@@ -20,7 +16,7 @@ public class WeatherResponseService {
     @Value("${open.weather.api.url}")
     String WEATHER_API_URL;
 
-    public WeatherResponse get(double lat, double lon) {
+    public WeatherResponse getWeatherResponse(double lat, double lon) {
 
         if (Math.abs(lat) > 180 || Math.abs(lon) > 180) {
             throw new IllegalArgumentException("Coordinates should be between -180 and 180 degree");
@@ -34,5 +30,11 @@ public class WeatherResponseService {
 
         return weatherResponse;
     }
+
+    public WeatherSituation getWeatherSituation(double lat, double lon) {
+        WeatherSituation weatherSituation = new WeatherSituation(getWeatherResponse(lat,lon));
+        return weatherSituation;
+    }
+
 
 }
