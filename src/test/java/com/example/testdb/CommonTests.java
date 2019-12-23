@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 
 @SpringBootTest(classes = MeteoApplication.class)
-public class MeteoApplicationTests {
+public class CommonTests {
 
     @Autowired
     private MainController mainController;
