@@ -1,6 +1,32 @@
 function test() {
     alert(123);
 }
+function renderCircles() {
+
+
+}
+function renderCircle(lat,lon,radius,color) {
+        var newCircle = new ymaps.Circle([
+            [lat, lon],
+            // Радиус круга в метрах.
+            radius
+        ], {
+            balloonContent: "some info",
+        }, {
+            draggable: false,
+            // Последний байт (77) определяет прозрачность.
+            //fillColor: "#0000ff77",
+            fillColor: color,
+            // Цвет обводки.
+            strokeColor: "#990066",
+            // Прозрачность обводки.
+            strokeOpacity: 0.8,
+            // Ширина обводки в пикселях.
+            strokeWidth: 2
+        });
+        myMap.geoObjects.add(newCircle);
+
+}
 function getAndRender() {
     var lat = $("#lat").val();
     var lon = $("#lon").val();
