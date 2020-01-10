@@ -1,9 +1,18 @@
+
 function test() {
     alert(123);
 }
 function renderCircles() {
+    const maxCircles = 50;
+    let coordArr = myMap.geoObjects.get(0).geometry.getCoordinates()[0];
+    let topLeftLat = coordArr[0][0];
+    let topLeftLon = coordArr[0][1];
+    let botRightLat = coordArr[1][0];
+    let botRightLon = coordArr[1][1];
+    let latAbs = Math.abs(topLeftLat - botRightLat);
+    let lonAbs = Math.abs(topLeftLon - botRightLon);
 
-
+       alert("asd");
 }
 function renderCircle(lat,lon,radius,color) {
         var newCircle = new ymaps.Circle([
@@ -82,8 +91,6 @@ function newPolygon() {
             [
                 [centerLat - zoom, centerLon - zoom],
                 [centerLat + zoom, centerLon + zoom]
-
-
             ]
         ]);
     myMap.geoObjects.add(polygon);
