@@ -1,6 +1,6 @@
 package com.example.meteo.dto;
 
-class Point {
+public class Point {
     private double lat;
     private double lon;
 
