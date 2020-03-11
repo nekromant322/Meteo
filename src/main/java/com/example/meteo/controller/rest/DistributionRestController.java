@@ -4,6 +4,7 @@ import com.example.meteo.dto.Point;
 import com.example.meteo.dto.SquareDTO;
 import com.example.meteo.model.weather.Sys;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,11 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@RestController("/api/distributions/")
 public class DistributionRestController {
 
-    @GetMapping("/makeDistribution")
-    public Map<Point, Double> makeDistribution(@RequestParam SquareDTO squareDTO, int measureCount) {
+    @PostMapping("/make")
+    public Map<Point, Double> makeDistribution(@RequestParam SquareDTO squareDTO, @RequestParam int measureCount) {
         List<Point> points = squareDTO.getAngles();
         Point point1 = points.get(0); // left-top corner
         Point point2 = points.get(1); // right-bottom
