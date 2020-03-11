@@ -2,7 +2,6 @@ package com.example.meteo.controller.rest;
 
 import com.example.meteo.dto.Point;
 import com.example.meteo.dto.SquareDTO;
-import com.example.meteo.model.weather.Sys;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,17 +22,17 @@ public class DistributionRestController {
         double width = point1.getLat() - point2.getLat();
         double height = point2.getLon() - point1.getLon();
         double square = width * height;
-        double perimeter = (width + height) * 2;
         double rad = 0.5 * Math.sqrt(square / measureCount);
         HashMap<Point, Double> circlePoints = new HashMap<>();
-        double x=point1.getLat()+rad;
-        double y=point1.getLon()+rad;
-        while (y+rad<point2.getLon()) {
-            while(x-rad>point2.getLat()) {
-                circlePoints.put(new Point(x,y),rad);
-                x-=rad;
+        double x = point1.getLat() + rad;
+        double y = point1.getLon() - rad;
+        while (y > point2.getLon()) {
+            while (x < point2.getLat()) {
+                circlePoints.put(new Point(x, y), rad);
+                x += 2 * rad;
             }
-            y+=rad;
+            y -= 2 * rad;
+            x = point1.getLat() + rad;
         }
         return circlePoints;
     }
