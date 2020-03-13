@@ -69,6 +69,7 @@ function ajaxWeatherAtPoint(lat, lon) {
     $.ajax({
         method: 'GET',
         url: '/api/weather?' + coord,
+        async: false,
         success: function(weatherSituation) {
             console.log(weatherSituation);
             return weatherSituation;
@@ -196,6 +197,33 @@ function init() {
     myMap.geoObjects.add(myCircle);
     myMap.geoObjects.add(myCircle1);
     myMap.geoObjects.add(myCircle2);
+}
+
+function takeDistribution(botRightPoint, upperLeftPoint, measureNumber) {
+
+    var data = {
+        squareDTO :
+            {
+                botRightPoint : botRightPoint,
+                upperLeftPoint : upperLeftPoint,
+                measureCount : measureNumber
+
+            }
+    };
+    $.ajax({
+        method: 'POST',
+        url: '/api/distributions/make/',
+        data : JSON.stringify(data),
+        contentType: 'application/json; charset=utf-8',
+        async: false,
+        success: function(hashMap) {
+            console.log(weatherSituation);
+            return hashMap;
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
 }
 
 

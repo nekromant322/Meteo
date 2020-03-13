@@ -4,20 +4,34 @@ import java.util.List;
 
 public class SquareDTO {
 
-    private List<Point> angles;
+    private Point botRightPoint;
+    private Point upperLeftPoint;
+    private int measureCount;
 
     public SquareDTO() {
     }
 
-    public SquareDTO(List<Point> angles) {
-        this.angles = angles;
+    public Point getUpperLeftPoint() {
+        return upperLeftPoint;
     }
 
-    public List<Point> getAngles() {
-        return angles;
+    public void setUpperLeftPoint(Point upperLeftPoint) {
+        this.upperLeftPoint = upperLeftPoint;
     }
 
-    public void setAngles(List<Point> angles) {
-        this.angles = angles;
+    public Point getBotRightPoint() {
+        return botRightPoint;
+    }
+
+    public void setBotRightPoint(Point botRightPoint) {
+        this.botRightPoint = botRightPoint;
+    }
+
+    public int getMeasureCount() {
+        return measureCount;
+    }
+
+    public void setMeasureCount(int measureCount) {
+        this.measureCount = measureCount;
     }
 }
