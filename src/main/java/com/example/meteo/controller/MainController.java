@@ -25,4 +25,9 @@ public class MainController {
     public String newMap() {
         return "newMap";
     }
+
+    @GetMapping("/newMapTimeline")
+    public String newMapTimeline() {
+        return "newMapTimeline";
+    }
 }
