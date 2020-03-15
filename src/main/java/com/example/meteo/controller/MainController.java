@@ -20,4 +20,9 @@ public class MainController {
     public String getDefaultWeather(){
         return "defaultWeather";
     }
+
+    @GetMapping("/newMap")
+    public String newMap() {
+        return "newMap";
+    }
 }

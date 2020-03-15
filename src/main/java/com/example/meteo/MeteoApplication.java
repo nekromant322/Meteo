@@ -22,8 +22,8 @@ public class MeteoApplication {
     }
 
     //delete "//" to enable init database with default values
-    @PostConstruct
-    @Bean(initMethod = "initData")
+    //@PostConstruct
+    //@Bean(initMethod = "initData")
     public InitData initialData() {
         return new InitData();
     }
