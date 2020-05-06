@@ -15,27 +15,48 @@ const options = {
 windyInit(options, windyAPI => {
     // windyAPI is ready, and contain 'map', 'store',
     // 'picker' and other usefull stuff
-    windyAPI.store.set('particlesAnim', 'off');
-    windyAPI.store.set(' isolines', 'off');
-    windyAPI.store.set(' graticule', 'false');
-    windyAPI.store.set('latlon', 'false');
+    windyAPI.store.set('particlesAnim', 'on');
+    windyAPI.store.set('isolines', 'temp');
+    windyAPI.store.set('graticule', 'true');
+    windyAPI.store.set('latlon', 'true');
     windyAPI.store.set('hourFormat', '24h');
 
-    let arrLayers = ['wind','rain','temp','clouds','pressure'];
+    let arrLayers = ['temp','rain','wind','clouds','pressure'];
     windyAPI.store.set('favOverlays', arrLayers);
     windyAPI.store.set('availLevels',['surface'])
-    const { map } = windyAPI;
-    // .map is instance of Leaflet map
+    const { picker, utils, broadcast, map } = windyAPI;
+    picker.on('pickerOpened', latLon => {
+            // picker has been opened at latLon coords
+            console.log(latLon);
 
-//    L.popup()
-//        .setLatLng([50.4, 14.3])
-//        .setContent('Hello World')
-//        .openOn(map);
+            const { lat, lon, values, overlay } = picker.getParams();
+            // -> 48.4, 14.3, [ U,V, ], 'wind'
+            console.log(lat, lon, values, overlay);
+
+            const windObject = utils.wind2obj(values);
+            console.log(windObject);
+        });
+
+        picker.on('pickerMoved', latLon => {
+            // picker was dragged by user to latLon coords
+            console.log(latLon);
+        });
+
+        picker.on('pickerClosed', () => {
+            // picker was closed
+        });
+
+        // Wait since wather is rendered
+        broadcast.once('redrawFinished', () => {
+            picker.open({ lat: 48.4, lon: 14.3 });
+            // Opening of a picker (async)
+        });
 });
 
 setInterval(hide,50);
 setInterval(hideProgress,50);
 setInterval(hideLayers,50);
+//setInterval(hideBox,50);
 function hide() {
     var logo = document.querySelector('#logo');
     if(logo.style.display === '') {
@@ -63,5 +84,11 @@ function hideLayers() {
     let layers = document.querySelector('#layers-levels');
     if(layers.style.display === '') {
             layers.style.display = 'none';
+    }
+}
+function hideBox() {
+    let box = document.querySelector('.timecode main-timecode');
+    if(box.style.display === '') {
+            box.style.display = 'none';
     }
 }

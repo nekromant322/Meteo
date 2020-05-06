@@ -15,15 +15,15 @@ const options = {
 windyInit(options, windyAPI => {
     // windyAPI is ready, and contain 'map', 'store',
     // 'picker' and other usefull stuff
-    windyAPI.store.set('particlesAnim', 'off');
-    windyAPI.store.set(' isolines', 'off');
-    windyAPI.store.set(' graticule', 'false');
-    windyAPI.store.set('latlon', 'false');
-    windyAPI.store.set('hourFormat', '24h');
+//    windyAPI.store.set('particlesAnim', 'on');
+//    windyAPI.store.set(' isolines', 'on');
+//    windyAPI.store.set(' graticule', 'true');
+//    windyAPI.store.set('latlon', 'false');
+//    windyAPI.store.set('hourFormat', '24h');
 
-    let arrLayers = ['wind','rain','temp','clouds','pressure'];
-    windyAPI.store.set('favOverlays', arrLayers);
-    windyAPI.store.set('availLevels',['surface'])
+//    let arrLayers = ['wind','rain','temp','clouds','pressure'];
+//    windyAPI.store.set('favOverlays', arrLayers);
+//    windyAPI.store.set('availLevels',['surface'])
     const { map } = windyAPI;
     // .map is instance of Leaflet map
 
